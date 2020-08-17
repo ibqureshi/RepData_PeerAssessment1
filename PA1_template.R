@@ -8,7 +8,7 @@ data <- na.omit(dataraw)
 
 m <- mean(data$steps)
 mean <- with(data, aggregate(steps, by = list(date), mean))
-median <- with( data, aggregate(data$steps, by = list(date), median))
+median <- with( data, aggregate(steps, by = list(date), median))
 totalstepsbyday <- with(data, aggregate(steps, by = list(date), sum))
 
 hist(totalstepsbyday$x,xlab = "Total Steps Per Day", main = "Total Steps")
@@ -29,7 +29,7 @@ missing <- is.na(dataraw[,1])
 dataraw[missing,1]<-m
 
 mean2 <- with(dataraw, aggregate(steps, by = list(date), mean))
-median2 <- with(dataraw, aggregate(data$steps, by = list(date), median))
+median2 <- with(dataraw, aggregate(steps, by = list(date), median))
 totalstepsbyday2 <- with(dataraw, aggregate(steps, by = list(date), sum))
 
 hist(totalstepsbyday2$x,xlab = "Total Steps Per Day", main = "Total Steps")
@@ -63,4 +63,3 @@ wkdy <- week[week$Group.2 %in% "Weekday",]
 
 plot(wknd$Group.1, wknd$x, type = "l", xlab = "Interval", ylab = "Steps", col = "black", main = "Weekend")
 plot(wkdy$Group.1, wkdy$x, type = "l", xlab = "Interval", ylab = "Steps", col = "black", main = "Weekday")
-
