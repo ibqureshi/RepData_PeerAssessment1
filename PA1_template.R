@@ -1,15 +1,3 @@
----
-title: "Project 1"
-author: "Ibraheem"
-date: "8/16/2020"
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## Loading and preprocessing the data
 
 library(ggplot2)
 library(lubridate)
@@ -54,18 +42,18 @@ dataraw$day <- wday(as.POSIXlt(dataraw$date))
 
 for (i in 1:nrow(dataraw))
 {
-    if(dataraw[i,4] == 1)
-    {
-      dataraw$wknd[i] <- "Weekend"
-    }
-    else if (dataraw[i, 4] == 7)
-    {
-      dataraw$wknd[i] <- "Weekend"
-    }
-    else
-    {
-      dataraw$wknd[i] <- "Weekday"
-    }
+  if(dataraw[i,4] == 1)
+  {
+    dataraw$wknd[i] <- "Weekend"
+  }
+  else if (dataraw[i, 4] == 7)
+  {
+    dataraw$wknd[i] <- "Weekend"
+  }
+  else
+  {
+    dataraw$wknd[i] <- "Weekday"
+  }
 }
 
 week <- with(dataraw, aggregate(steps, by = list(interval, wknd), sum))
@@ -75,3 +63,4 @@ wkdy <- week[week$Group.2 %in% "Weekday",]
 
 plot(wknd$Group.1, wknd$x, type = "l", xlab = "Interval", ylab = "Steps", col = "black", main = "Weekend")
 plot(wkdy$Group.1, wkdy$x, type = "l", xlab = "Interval", ylab = "Steps", col = "black", main = "Weekday")
+
